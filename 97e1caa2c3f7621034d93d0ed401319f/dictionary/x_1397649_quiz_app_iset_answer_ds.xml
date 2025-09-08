@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="61acd2e6c37b621034d93d0ed4013197" extends="sys_import_set_row" label="ISet Answer DS" max_length="40" name="x_1397649_quiz_app_iset_answer_ds" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Id" label="Id" max_length="40" name="u_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Answer" label="Answer" max_length="40" name="u_answer" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Correct" label="Correct" max_length="40" name="u_correct" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Question" label="Question" max_length="177" name="u_question" type="string"/>
+    </element>
+</database>

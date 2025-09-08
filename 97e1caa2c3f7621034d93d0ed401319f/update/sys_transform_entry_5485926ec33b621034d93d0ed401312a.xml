@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_transform_entry">
+    <sys_transform_entry action="INSERT_OR_UPDATE">
+        <choice_action>create</choice_action>
+        <coalesce>false</coalesce>
+        <coalesce_case_sensitive>false</coalesce_case_sensitive>
+        <coalesce_empty_fields>false</coalesce_empty_fields>
+        <date_format>yyyy-MM-dd HH:mm:ss</date_format>
+        <map display_value="Question Transform Map Quiz App">7a2d02a2c33b621034d93d0ed40131d1</map>
+        <reference_value_field/>
+        <source_field>u_id</source_field>
+        <source_script><![CDATA[answer = (function transformEntry(source) {
+
+	// Add your code here
+	return ""; // return the value to be put into the target field
+
+})(source);]]></source_script>
+        <source_table>x_1397649_quiz_app_iset_question</source_table>
+        <sys_class_name>sys_transform_entry</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-08 12:03:27</sys_created_on>
+        <sys_id>5485926ec33b621034d93d0ed401312a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_id</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_transform_entry_5485926ec33b621034d93d0ed401312a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-08 12:03:27</sys_updated_on>
+        <target_field>u_id</target_field>
+        <target_table>x_1397649_quiz_app_question</target_table>
+        <use_source_script>false</use_source_script>
+    </sys_transform_entry>
+</record_update>

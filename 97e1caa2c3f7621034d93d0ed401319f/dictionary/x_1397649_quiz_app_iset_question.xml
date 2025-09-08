@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="45ec4a62c33b621034d93d0ed401317a" extends="sys_import_set_row" label="ISet Question" max_length="40" name="x_1397649_quiz_app_iset_question" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Id" label="Id" max_length="40" name="u_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Question" label="Question" max_length="177" name="u_question" type="string"/>
+    </element>
+</database>

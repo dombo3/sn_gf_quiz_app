@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="d8760a2ac3f7621034d93d0ed4013199" label="Answer" max_length="40" name="x_1397649_quiz_app_answer" type="collection">
+        <element label="Question" max_length="32" name="question" reference="x_1397649_quiz_app_question" type="reference"/>
+        <element label="Correct" max_length="40" name="correct" type="boolean"/>
+        <element label="Answer" max_length="150" name="answer" type="string"/>
+        <index name="index">
+            <element name="question"/>
+        </index>
+    </element>
+</database>

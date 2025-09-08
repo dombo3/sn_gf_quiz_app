@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="c37582e6c3f7621034d93d0ed40131aa" label="Question" max_length="40" name="x_1397649_quiz_app_question" type="collection">
         <element attributes="edge_encryption_enabled=true" label="Question" max_length="177" name="question" type="string"/>
+        <element label="Id" max_length="40" name="u_id" read_only="true" type="integer"/>
         <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <index name="index">
+            <element name="question"/>
+        </index>
     </element>
 </database>

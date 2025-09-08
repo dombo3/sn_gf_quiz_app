@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="DELETE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description/>
+        <elevated_privilege>false</elevated_privilege>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_1397649_quiz_app.answer_user</name>
+        <scoped_admin>false</scoped_admin>
+        <suffix>answer_user</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-08 11:02:01</sys_created_on>
+        <sys_id>dc77ce66c3f7621034d93d0ed40131e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1397649_quiz_app.answer_user</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_user_role_dc77ce66c3f7621034d93d0ed40131e4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-08 11:02:01</sys_updated_on>
+    </sys_user_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</application>
+        <file_path/>
+        <instance_id>8ee2e0d53b4b465cc55a348aa4e45af2</instance_id>
+        <instance_name>dev278190</instance_name>
+        <name>sys_user_role_dc77ce66c3f7621034d93d0ed40131e4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role"><sys_user_role action="INSERT_OR_UPDATE"><assignable_by/><can_delegate>true</can_delegate><description/><elevated_privilege>false</elevated_privilege><grantable>true</grantable><includes_roles/><name>x_1397649_quiz_app.answer_user</name><scoped_admin>false</scoped_admin><suffix>answer_user</suffix><sys_class_name>sys_user_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-09-08 11:02:01</sys_created_on><sys_id>dc77ce66c3f7621034d93d0ed40131e4</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_1397649_quiz_app.answer_user</sys_name><sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package><sys_policy/><sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope><sys_update_name>sys_user_role_dc77ce66c3f7621034d93d0ed40131e4</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-09-08 11:02:01</sys_updated_on></sys_user_role></record_update>]]></payload>
+        <payload_hash>1569390333</payload_hash>
+        <record_name>x_1397649_quiz_app.answer_user</record_name>
+        <reverted_from/>
+        <source>2b56cae6c3f7621034d93d0ed40131e4</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-08 11:02:01</sys_created_on>
+        <sys_id>58774e6ac3f7621034d93d0ed40131b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19928fd6d300000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-08 11:02:01</sys_updated_on>
+        <type>Role</type>
+        <update_guid>1c774e6a64f7621010e252792d5fa5b4</update_guid>
+        <update_guid_history>1c774e6a64f7621010e252792d5fa5b4:1569390333</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="x_1397649_quiz_app.answer_user">4f2bc2eac3f7621034d93d0ed4013181</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-08 11:18:20</sys_created_on>
+        <sys_db_object display_value="" name="sys_user_role">sys_user_role</sys_db_object>
+        <sys_id>72270b7eda9c4ad38d4db349bb3e4349</sys_id>
+        <sys_metadata>dc77ce66c3f7621034d93d0ed40131e4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1397649_quiz_app.answer_user</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_scope_delete display_value="">2537647f69b6429999443fa099338931</sys_scope_delete>
+        <sys_update_name>sys_user_role_dc77ce66c3f7621034d93d0ed40131e4</sys_update_name>
+        <sys_update_version display_value="sys_user_role_dc77ce66c3f7621034d93d0ed40131e4">58774e6ac3f7621034d93d0ed40131b5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-08 11:18:20</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[/** Initialize Game state */
+var score = 0;
+var questionDetails = {};
+
+/** Get HTML nodes from the Game Page */
+var questionLabel = document.getElementById("question");
+var scoreLabel = document.getElementById("score");
+var answers = document.getElementsByClassName("answer");
+
+/**
+ * Set initial score and fetch a random question.
+ */
+updateScorelabel(score);
+getQuestion();
+
+/** Attach event listeners to the answer buttons If the user clicks on an
+ * answer with the data-correct attribute set to 1 mark it as correct,
+ * increment & update the score and get a new question. If it is not, just mark
+ * it as wrong and get a new question.
+ */
+
+[].forEach.call(answers, function(answer) {
+    answer.addEventListener("click", function(event) {
+        if (event.target.dataset.correct === "1") {
+            updateScorelabel(++score);
+            event.target.classList.add("correct");
+            setTimeout(getQuestion, 750);
+        } else {
+            event.target.classList.add("wrong");
+            setTimeout(getQuestion, 750);
+        }
+    });
+});
+
+/** Start a new GlideAjax based call to the QuizHelper Script Include, and call
+ * the getRandom() function on it.
+ */
+
+function getQuestion() {
+    var questionAjax = new GlideAjax("x_1397649_quiz_app.QuizHelper");
+    questionAjax.addParam("sysparm_name", "getRandom");
+    questionAjax.getXMLAnswer(processResponse);
+}
+
+/**
+ *
+ * @param {*} res the result of the getRandom() call on the QuizHelper Script
+ * Include
+ *
+ * Callack that is called with the GlideAjax response sets the question and
+ * answer details on the page
+ */
+function processResponse(res) {
+    questionDetails = JSON.parse(res);
+    questionLabel.innerText = questionDetails.question;
+    updateAnswers(questionDetails.answers);
+}
+
+function updateScorelabel(scoreIn) {
+    scoreLabel.innerText = "Score: " + scoreIn;
+}
+
+/**
+ *
+ * @param {*} answersIn the answers array of the incoming response object
+ *
+ * Iterate over the incoming answers and set the HTML document accordingly
+ */
+function updateAnswers(answersIn) {
+    answersIn.forEach(function(answer, index) {
+        if (answers[index]) {
+            answers[index].classList.remove("correct", "wrong");
+            answers[index].innerText = answer.answer;
+            answers[index].setAttribute("data-correct", answer.correct);
+        }
+    });
+}]]></client_script>
+        <description>The following UI page is dependent on a client callable Script Include that provides questions and answers through a getRandom() function.</description>
+        <direct>false</direct>
+        <endpoint>x_1397649_quiz_app_Quiz Page.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+  <style>
+    .correct {
+      background-color: rgb(41, 175, 41) !important;
+    }
+
+    .wrong {
+      background-color: rgb(255, 60, 60) !important;
+    }
+
+    #game {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #score {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    #game-inner {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 5em;
+      width: 700px;
+      border-radius: 10px;
+    }
+
+    .answer {
+      background-color: rgb(97, 97, 255);
+      color: white;
+      margin: 0.2em;
+      border-radius: 3px;
+      padding: 1em;
+      cursor: pointer;
+    }
+
+    div {
+      text-align: center;
+    }
+
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: lightblue !important;
+    }
+  </style>
+  <div id="game">
+    <h1 id="score"></h1>
+    <div id="game-inner">
+      <h2 id="question"></h2>
+      <div class="answer"></div>
+      <div class="answer"></div>
+      <div class="answer"></div>
+      <div class="answer"></div>
+    </div>
+  </div>
+</j:jelly>]]></html>
+        <name>Quiz Page</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-09 15:09:39</sys_created_on>
+        <sys_id>01584c0fc377e21034d93d0ed4013184</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Quiz Page</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_ui_page_01584c0fc377e21034d93d0ed4013184</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-09 16:25:57</sys_updated_on>
+    </sys_ui_page>
+</record_update>

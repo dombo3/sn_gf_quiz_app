@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_1397649_quiz_app.QuizHelper</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Client callable Script Include that provides questions and answers through a getRandom() function&#13;
+#GreenFox
+|
+Methods:
+* getRandom()</description>
+        <name>QuizHelper</name>
+        <script><![CDATA[var QuizHelper = Class.create();
+QuizHelper.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getRandom: function() {
+        var questionGr = new GlideRecord("x_1397649_quiz_app_question");
+
+        var agg = new GlideAggregate("x_1397649_quiz_app_question");
+        agg.addAggregate("COUNT");
+        agg.query();
+        var total = 0;
+
+        if (agg.next()) {
+            total = parseInt(agg.getAggregate("COUNT"), 10);
+        }
+
+        if (total === 0) {
+            return JSON.stringify({
+                error: "No questions available"
+            });
+        }
+
+        var randomIndex = Math.floor(Math.random() * total);
+
+        // var random = Math.floor(Math.random() * 10) + 1;
+        // questionGr.addQuery("u_id", random);
+
+        questionGr.chooseWindow(randomIndex, randomIndex + 1);
+        questionGr.query();
+
+        if (questionGr.next()) {
+            var question = questionGr.getValue("question");
+
+            var answerGr = new GlideRecord("x_1397649_quiz_app_answer");
+            answerGr.addQuery("question", questionGr.getUniqueValue());
+            answerGr.query();
+            var answers = [];
+            while (answerGr.next()) {
+                answers.push({
+                    "answer": answerGr.getValue("answer"),
+                    "correct": answerGr.getValue("correct") == "1" ? 1 : 0
+                });
+            }
+
+            return JSON.stringify({
+                "question": question,
+                "answers": answers
+            });
+        }
+    },
+
+    type: 'QuizHelper'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-09 15:13:54</sys_created_on>
+        <sys_id>721a80cfc377e21034d93d0ed4013142</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>QuizHelper</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_script_include_721a80cfc377e21034d93d0ed4013142</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-09 16:19:35</sys_updated_on>
+    </sys_script_include>
+</record_update>

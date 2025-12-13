@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description/>
+        <name>Create Schedules Test</name>
+        <record_for_rollback>true</record_for_rollback>
+        <script><![CDATA[(function() {
+    var SCHEDULE_NAMES = {
+        WEEKDAY: "07:30-18:00 Monday-Friday (FI)",
+        MON_TO_SAT: "07:30-22:00 Monday-Saturday (FI)",
+        DAILY: "00:00-23:59 Everyday (FI)"
+    };
+    // var scheduleUtils = new global.ScheduleUtils();
+
+    var schedules = [{
+            name: SCHEDULE_NAMES.WEEKDAY,
+            time_zone: "Europe/Helsinki",
+            span_name: "Weekdays 07:30-18:00",
+            start: "07:30:00",
+            end: "18:00:00",
+            repeat_type: "weekdays",
+            add_holidays: true
+        },
+        {
+            name: SCHEDULE_NAMES.MON_TO_SAT,
+            time_zone: "Europe/Helsinki",
+            span_name: "Mon-Sat 07:30-22:00",
+            start: "07:30:00",
+            end: "22:00:00",
+            repeat_type: "specific",
+            days_of_week: "123456", // Monday to Saturday
+            add_holidays: true
+        },
+        {
+            name: SCHEDULE_NAMES.DAILY,
+            time_zone: "Europe/Helsinki",
+            span_name: "Daily 00:00-23:59",
+            start: "00:00:00",
+            end: "23:59:59",
+            repeat_type: "daily",
+            add_holidays: false
+        }
+    ];
+
+    // 1. Create / maintain Finland Holidays schedule
+    var finlandHolidayScheduleId = ensureFinlandHolidaysSchedule();
+
+    // 2. Create parent schedules
+    for (var i = 0; i < schedules.length; i++) {
+        var s = schedules[i];
+        var scheduleId = getSchedule(s.name);
+        // var scheduleId = scheduleUtils.getSchedule(s.name);
+
+        if (!scheduleId) {
+            var sched = new GlideRecord("cmn_schedule");
+            sched.initialize();
+            sched.name = s.name;
+            sched.time_zone = s.time_zone;
+            scheduleId = sched.insert();
+            gs.info("Created schedule: " + s.name);
+        } else {
+            gs.info("Schedule already exists: " + s.name);
+        }
+
+        // Create holiday child schedule link ONLY if add_holidays = true
+        if (finlandHolidayScheduleId && s.add_holidays) {
+            var childGr = new GlideRecord("cmn_other_schedule");
+            childGr.addQuery("schedule", scheduleId);
+            childGr.addQuery("child_schedule", finlandHolidayScheduleId);
+            childGr.query();
+            if (!childGr.next()) {
+                childGr.initialize();
+                childGr.schedule = scheduleId;
+                childGr.child_schedule = finlandHolidayScheduleId;
+                childGr.time_zone = "Europe/Helsinki";
+                childGr.type = "EXCLUDE";
+                childGr.insert();
+                gs.info("Linked Finland Holidays as child schedule to: " + s.name);
+            } else {
+                gs.info("Child schedule already linked for: " + s.name);
+            }
+        }
+
+        // Create span in the parent schedule
+        var spanGr = new GlideRecord("cmn_schedule_span");
+        spanGr.addQuery("schedule", scheduleId);
+        spanGr.addQuery("name", s.span_name);
+        spanGr.query();
+
+        if (!spanGr.next()) {
+            var span = new GlideRecord("cmn_schedule_span");
+            span.initialize();
+            span.schedule = scheduleId;
+            span.name = s.span_name;
+            span.start_date_time = "1970-01-01 " + s.start;
+            span.end_date_time = "1970-01-01 " + s.end;
+            span.repeat_type = s.repeat_type;
+
+            if (s.repeat_type === "specific" && s.days_of_week) {
+                span.days_of_week = s.days_of_week;
+            }
+
+            span.insert();
+            gs.info("Span created with repeat_type: " + s.span_name);
+        } else {
+            gs.info("Span already exists: " + s.span_name + " for schedule: " + s.name);
+        }
+    }
+
+	function getSchedule() {
+        try {
+            var gr = new GlideRecord('cmn_schedule');
+            gr.addQuery('name', schedule);
+            gr.setLimit(1);
+            gr.query();
+            if (gr.next()) {
+                return gr.getUniqueValue();
+            }
+        } catch (err) {
+            gs.log("ScheduleUtils().getSchedule: " + err + ", Schedule: " + schedule, 'ScheduleUtils');
+
+        }
+	}
+
+    // === Helper function for Finland Holidays schedule ===
+    function ensureFinlandHolidaysSchedule() {
+        var scheduleName = "Finland Public Holidays";
+        var timeZone = "Europe/Helsinki";
+
+        // Holiday list (MM-DD format for dynamic year)
+        var holidays = [{
+                monthDay: "01-01",
+                name: "New Year's Day"
+            },
+            {
+                monthDay: "01-06",
+                name: "Epiphany"
+            },
+            {
+                monthDay: "04-18",
+                name: "Good Friday"
+            },
+            {
+                monthDay: "04-20",
+                name: "Easter Sunday"
+            },
+            {
+                monthDay: "04-21",
+                name: "Easter Monday"
+            },
+            {
+                monthDay: "05-01",
+                name: "May Day"
+            },
+            {
+                monthDay: "05-29",
+                name: "Ascension Day"
+            },
+            {
+                monthDay: "06-08",
+                name: "Pentecost"
+            },
+            {
+                monthDay: "06-20",
+                name: "Midsummer Eve"
+            },
+            {
+                monthDay: "06-21",
+                name: "Midsummer Day"
+            },
+            {
+                monthDay: "11-01",
+                name: "All Saints' Day"
+            },
+            {
+                monthDay: "12-06",
+                name: "Independence Day"
+            },
+            {
+                monthDay: "12-24",
+                name: "Christmas Eve"
+            },
+            {
+                monthDay: "12-25",
+                name: "Christmas Day"
+            },
+            {
+                monthDay: "12-26",
+                name: "St. Stephen's Day"
+            }
+        ];
+
+        var holidayNames = [];
+        for (var j = 0; j < holidays.length; j++) {
+            holidayNames.push(holidays[j].name);
+        }
+
+        // 1. Create schedule if it does not exist
+        var scheduleGR = new GlideRecord("cmn_schedule");
+        var scheduleId;
+        if (!scheduleGR.get("name", scheduleName)) {
+            scheduleGR.initialize();
+            scheduleGR.name = scheduleName;
+            scheduleGR.time_zone = timeZone;
+            scheduleId = scheduleGR.insert();
+            gs.info("Created holiday schedule: " + scheduleName);
+        } else {
+            scheduleId = scheduleGR.sys_id;
+            gs.info("Holiday schedule already exists: " + scheduleName);
+        }
+
+        // 2. Create / update spans
+        var currentYear = new Date().getFullYear();
+        for (var k = 0; k < holidays.length; k++) {
+            var h = holidays[k];
+            var start = currentYear + "-" + h.monthDay + " 00:00:00";
+            var end = currentYear + "-" + h.monthDay + " 23:59:59";
+
+            var spanGR = new GlideRecord("cmn_schedule_span");
+            spanGR.addQuery("schedule", scheduleId);
+            spanGR.addQuery("name", h.name);
+            spanGR.query();
+
+            if (spanGR.next()) {
+                if (spanGR.start_date_time.getDisplayValue().indexOf(currentYear) === -1) {
+                    spanGR.start_date_time = start;
+                    spanGR.end_date_time = end;
+                    spanGR.repeat_type = "yearly";
+                    spanGR.type = "excluded";
+                    spanGR.time_zone = timeZone;
+                    spanGR.update();
+                    gs.info("Updated holiday: " + h.name);
+                } else {
+                    gs.info("Holiday already up-to-date: " + h.name);
+                }
+            } else {
+                var newSpan = new GlideRecord("cmn_schedule_span");
+                newSpan.initialize();
+                newSpan.schedule = scheduleId;
+                newSpan.name = h.name;
+                newSpan.start_date_time = start;
+                newSpan.end_date_time = end;
+                newSpan.repeat_type = "yearly";
+                newSpan.type = "excluded";
+                newSpan.time_zone = timeZone;
+                newSpan.insert();
+                gs.info("Created holiday: " + h.name);
+            }
+        }
+
+        // 3. Delete unnecessary spans
+        var cleanupGR = new GlideRecord("cmn_schedule_span");
+        cleanupGR.addQuery("schedule", scheduleId);
+        cleanupGR.query();
+        while (cleanupGR.next()) {
+            var name = cleanupGR.name + "";
+            var found = false;
+            for (var m = 0; m < holidayNames.length; m++) {
+                if (holidayNames[m] === name) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                gs.info("Deleting obsolete holiday span: " + name);
+                cleanupGR.deleteRecord();
+            }
+        }
+
+        return scheduleId;
+    }
+})();]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-09-22 19:13:12</sys_created_on>
+        <sys_id>5b8d378fc300321034d93d0ed40131bd</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Create Schedules Test</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_script_fix_5b8d378fc300321034d93d0ed40131bd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-09-22 19:29:52</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

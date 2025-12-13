@@ -8,7 +8,7 @@
         <hint>Take a Quiz</hint>
         <homepage/>
         <image/>
-        <link_type>DIRECT</link_type>
+        <link_type>DOC_LINK</link_type>
         <map_page/>
         <mobile_title>Open Quiz</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
@@ -25,7 +25,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>cb79e519c331321034d93d0ed40131b5</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Open Quiz</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
@@ -33,7 +33,7 @@
         <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
         <sys_update_name>sys_app_module_cb79e519c331321034d93d0ed40131b5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-12-13 13:55:34</sys_updated_on>
+        <sys_updated_on>2025-12-13 14:01:17</sys_updated_on>
         <timeline_page/>
         <title>Open Quiz</title>
         <uncancelable>false</uncancelable>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_profile_basic">
+    <sys_auth_profile_basic action="INSERT_OR_UPDATE">
+        <name>admin</name>
+        <password>﷞﷟﷒20d24149c3f2121034d93d0ed401317b﷬﷔1﷬﷭hZ5WlKLsym1UAlK8wquvQw==To4LEKsbcIDBeLOnjA9divAZhlLPJE71jf1Hgg==﷮﷯</password>
+        <sys_class_name>sys_auth_profile_basic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-21 08:56:15</sys_created_on>
+        <sys_id>5b29f002c362321034d93d0ed40131c2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>admin</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_auth_profile_basic_5b29f002c362321034d93d0ed40131c2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-21 08:56:15</sys_updated_on>
+        <username>admin</username>
+    </sys_auth_profile_basic>
+</record_update>

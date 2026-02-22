@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="DELETE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description>Generate string of length: 5</description>
+        <display_name>Generate Random String</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>2</order>
+        <step_config display_value="Generate Random String">263313e4c3123300eaac11fe81d3aef9</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-16 11:13:39</sys_created_on>
+        <sys_id>3ab86f9cc3e2321034d93d0ed4013105</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Generate Random String</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_update_name>sys_atf_step_3ab86f9cc3e2321034d93d0ed4013105</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-20 17:03:37</sys_updated_on>
+        <table/>
+        <test display_value="My First Quiz App Test">9a7d3d8cc326f21034d93d0ed4013175</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="DELETE" query="document_key=3ab86f9cc3e2321034d93d0ed4013105"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_atf_step</document>
+        <document_key>3ab86f9cc3e2321034d93d0ed4013105</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-16 11:13:39</sys_created_on>
+        <sys_id>d2c82fdcc3e2321034d93d0ed40131ae</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-16 11:13:39</sys_updated_on>
+        <value>5</value>
+        <variable display_value="Length">594393e4c3123300eaac11fe81d3aef0</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="DELETE" query="table=var__m_atf_input_variable_263313e4c3123300eaac11fe81d3aef9^id=3ab86f9cc3e2321034d93d0ed4013105"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</application>
+        <file_path/>
+        <instance_id>8ee2e0d53b4b465cc55a348aa4e45af2</instance_id>
+        <instance_name>dev278190</instance_name>
+        <name>sys_atf_step_3ab86f9cc3e2321034d93d0ed4013105</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step"><sys_atf_step action="INSERT_OR_UPDATE"><active>true</active><callable_outputs/><copied_from/><description>Generate string of length: 5</description><display_name>Generate Random String</display_name><inputs/><mugshots_cache_json/><notes/><order>2</order><step_config display_value="Generate Random String">263313e4c3123300eaac11fe81d3aef9</step_config><sys_class_name>sys_atf_step</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-01-16 11:13:39</sys_created_on><sys_id>3ab86f9cc3e2321034d93d0ed4013105</sys_id><sys_mod_count>2</sys_mod_count><sys_name>Generate Random String</sys_name><sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package><sys_policy/><sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope><sys_update_name>sys_atf_step_3ab86f9cc3e2321034d93d0ed4013105</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-01-20 17:03:37</sys_updated_on><table/><test display_value="My First Quiz App Test">9a7d3d8cc326f21034d93d0ed4013175</test><timeout/><warning_message/></sys_atf_step><sys_variable_value action="delete_multiple" query="document_key=3ab86f9cc3e2321034d93d0ed4013105"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_atf_step</document><document_key>3ab86f9cc3e2321034d93d0ed4013105</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-01-16 11:13:39</sys_created_on><sys_id>d2c82fdcc3e2321034d93d0ed40131ae</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-01-16 11:13:39</sys_updated_on><value>5</value><variable display_value="Length">594393e4c3123300eaac11fe81d3aef0</variable></sys_variable_value><sys_element_mapping action="delete_multiple" query="table=var__m_atf_input_variable_263313e4c3123300eaac11fe81d3aef9^id=3ab86f9cc3e2321034d93d0ed4013105"/></record_update>]]></payload>
+        <payload_hash>-1676233294</payload_hash>
+        <record_name>Generate Random String</record_name>
+        <reverted_from/>
+        <source>2b56cae6c3f7621034d93d0ed40131e4</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-20 17:03:38</sys_created_on>
+        <sys_id>044fd531c366321034d93d0ed4013111</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19bdc5ca6d20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-20 17:03:38</sys_updated_on>
+        <type>Test Step</type>
+        <update_guid>0c4fd5311866321067579d60dbff7b0f</update_guid>
+        <update_guid_history>0c4fd5311866321067579d60dbff7b0f:-1676233294,dec82fdcd3e2321022e3f43a66f825b1:-1978865997</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-01-20 17:03:38</sys_created_on>
+        <sys_db_object display_value="" name="sys_atf_step">sys_atf_step</sys_db_object>
+        <sys_id>01983948fc5d43f6800d23a5dbda9821</sys_id>
+        <sys_metadata>3ab86f9cc3e2321034d93d0ed4013105</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Generate Random String</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_scope_delete display_value="">2537647f69b6429999443fa099338931</sys_scope_delete>
+        <sys_update_name>sys_atf_step_3ab86f9cc3e2321034d93d0ed4013105</sys_update_name>
+        <sys_update_version display_value="sys_atf_step_3ab86f9cc3e2321034d93d0ed4013105">044fd531c366321034d93d0ed4013111</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-01-20 17:03:38</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

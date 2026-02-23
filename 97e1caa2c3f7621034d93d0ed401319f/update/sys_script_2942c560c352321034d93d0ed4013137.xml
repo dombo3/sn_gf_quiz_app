@@ -41,7 +41,7 @@
 
             if (count > 0) {
                 gs.addErrorMessage('A question can have only one correct answer.');
-                current.abortAction(true);
+                current.setAbortAction(true);
             }
         }
     }
@@ -54,7 +54,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>2942c560c352321034d93d0ed4013137</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name> One correct answer allowed</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
@@ -62,7 +62,7 @@
         <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
         <sys_update_name>sys_script_2942c560c352321034d93d0ed4013137</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-01-04 07:30:36</sys_updated_on>
+        <sys_updated_on>2026-02-23 11:09:25</sys_updated_on>
         <template/>
         <when>before</when>
         <x_snc_datasilos_created>false</x_snc_datasilos_created>

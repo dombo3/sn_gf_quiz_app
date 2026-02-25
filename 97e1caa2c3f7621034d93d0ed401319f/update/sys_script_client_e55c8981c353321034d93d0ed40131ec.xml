@@ -13,13 +13,18 @@
         <script><![CDATA[function onLoad() {
     var areAnyCorrect = new GlideAjax("QuizHelper");
     areAnyCorrect.addParam('sysparm_name', 'hasCorrect');
-    areAnyCorrect.addParam('sysparm_sys_id', g_form.getValue("sys_id"));
+    areAnyCorrect.addParam('sysparm_sys_id', g_form.getUniqueValue());
     areAnyCorrect.addParam('sysparm_question', g_form.getValue("question"));
     areAnyCorrect.getXML(ParseQuizUtil);
 
     function ParseQuizUtil(response) {
         var answer = response.responseXML.documentElement.getAttribute("answer");
-        alert(answer);
+		var hasCorrect = answer === "true";
+		if (hasCorrect) {
+			g_form.setReadOnly("correct", true);
+		} else {
+			g_form.setReadOnly("correct", false);
+		}
     }
 }]]></script>
         <sys_class_name>sys_script_client</sys_class_name>
@@ -28,7 +33,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e55c8981c353321034d93d0ed40131ec</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>CorrectChecker</sys_name>
         <sys_overrides/>
         <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
@@ -36,7 +41,7 @@
         <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
         <sys_update_name>sys_script_client_e55c8981c353321034d93d0ed40131ec</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-24 14:47:44</sys_updated_on>
+        <sys_updated_on>2026-02-25 21:14:10</sys_updated_on>
         <table>x_1397649_quiz_app_answer</table>
         <type>onLoad</type>
         <ui_type>0</ui_type>

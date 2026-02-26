@@ -10,7 +10,8 @@
 |
 Methods:
 * getRandom()
-* hasCorrect()</description>
+* hasCorrect()
+* getAnswersNum()</description>
         <mobile_callable>false</mobile_callable>
         <name>QuizHelper</name>
         <sandbox_callable>true</sandbox_callable>
@@ -78,19 +79,30 @@ QuizHelper.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 		}
 	},
 
+	getAnswersNum: function() {
+		var question = this.getParameter("sysparm_question");
+		var count = new GlideAggregate("x_1397649_quiz_app_answer");
+		count.addAggregate("COUNT");
+		count.addQuery("question", question);
+		count.query();
+		if (count.next()) {
+			return count.getAggregate("COUNT");
+		}
+	},
+
     type: 'QuizHelper'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-09 15:13:54</sys_created_on>
         <sys_id>721a80cfc377e21034d93d0ed4013142</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_name>QuizHelper</sys_name>
         <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
         <sys_update_name>sys_script_include_721a80cfc377e21034d93d0ed4013142</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-25 21:05:07</sys_updated_on>
+        <sys_updated_on>2026-02-26 18:15:16</sys_updated_on>
     </sys_script_include>
 </record_update>

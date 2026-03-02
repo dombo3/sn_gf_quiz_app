@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-01 14:33:07</sys_created_on>
+        <sys_id>156c32eec317321034d93d0ed40131fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1397649_quiz_app_quiz_maintenance.x_1397649_quiz_app.quiz_maintenance_user</sys_name>
+        <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
+        <sys_security_acl display_value="x_1397649_quiz_app_quiz_maintenance">416c32eec317321034d93d0ed40131ef</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_156c32eec317321034d93d0ed40131fb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-01 14:33:07</sys_updated_on>
+        <sys_user_role display_value="x_1397649_quiz_app.quiz_maintenance_user" name="x_1397649_quiz_app.quiz_maintenance_user">786c7eaec317321034d93d0ed40131bf</sys_user_role>
+    </sys_security_acl_role>
+</record_update>

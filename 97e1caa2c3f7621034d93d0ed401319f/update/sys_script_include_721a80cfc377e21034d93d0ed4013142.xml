@@ -10,6 +10,8 @@
 |
 Methods:
 * getRandom()
+* getRandomWithAnswer()
+* isDarkMode()
 * hasCorrect()
 * getAnswersNum()</description>
         <mobile_callable>false</mobile_callable>
@@ -64,31 +66,85 @@ QuizHelper.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         }
     },
 
-	hasCorrect: function() {
-		var sys_id = this.getParameter("sysparm_sys_id");
-		var question = this.getParameter("sysparm_question");
-		
-		var correctCount = new GlideAggregate("x_1397649_quiz_app_answer");
-		correctCount.addQuery("question", question);
-		correctCount.addQuery("sys_id", "!=", sys_id);
-		correctCount.addQuery("correct", 1);
-		correctCount.addAggregate("COUNT");
-		correctCount.query();
-		if (correctCount.next()) {
-			return parseInt(correctCount.getAggregate("COUNT")) > 0;
-		}
+    getRandomWithAnswer: function() {
+        var questions = [];
+
+        var ga = new GlideAggregate('x_1397649_quiz_app_answer');
+        ga.addAggregate('COUNT', 'question');
+        ga.groupBy('question');
+        ga.addHaving('COUNT', '>=', 4);
+        ga.query();
+
+        while (ga.next()) {
+            questions.push(ga.getValue('question'));
+        }
+
+        if (questions.length === 0) {
+            return JSON.stringify({
+                error: "No questions with at least 4 answers"
+            });
+        }
+
+
+        var randomIndex = Math.floor(Math.random() * questions.length);
+        var randomQuestionId = questions[randomIndex];
+        var questionGr = new GlideRecord("x_1397649_quiz_app_question");
+        if (questionGr.get(randomQuestionId)) {
+            var question = questionGr.getValue("question");
+
+            var answerGr = new GlideRecord("x_1397649_quiz_app_answer");
+            answerGr.addQuery("question", randomQuestionId);
+            answerGr.query();
+
+            var answers = [];
+
+            while (answerGr.next()) {
+                answers.push({
+                    "answer": answerGr.getValue("answer"),
+                    "correct": answerGr.getValue("correct") === "1" ? 1 : 0
+                });
+            }
+
+            return JSON.stringify({
+                "question": question,
+                "answers": answers
+            });
+        }
+
+        return JSON.stringify({
+            error: "Question not found"
+        });
+    },
+
+	isDarkMode: function() {
+		return gs.getProperty('x_1397649_quiz_app.dark_mode', 'false');
 	},
 
-	getAnswersNum: function() {
-		var question = this.getParameter("sysparm_question");
-		var count = new GlideAggregate("x_1397649_quiz_app_answer");
-		count.addAggregate("COUNT");
-		count.addQuery("question", question);
-		count.query();
-		if (count.next()) {
-			return count.getAggregate("COUNT");
-		}
-	},
+    hasCorrect: function() {
+        var sys_id = this.getParameter("sysparm_sys_id");
+        var question = this.getParameter("sysparm_question");
+
+        var correctCount = new GlideAggregate("x_1397649_quiz_app_answer");
+        correctCount.addQuery("question", question);
+        correctCount.addQuery("sys_id", "!=", sys_id);
+        correctCount.addQuery("correct", 1);
+        correctCount.addAggregate("COUNT");
+        correctCount.query();
+        if (correctCount.next()) {
+            return parseInt(correctCount.getAggregate("COUNT")) > 0;
+        }
+    },
+
+    getAnswersNum: function() {
+        var question = this.getParameter("sysparm_question");
+        var count = new GlideAggregate("x_1397649_quiz_app_answer");
+        count.addAggregate("COUNT");
+        count.addQuery("question", question);
+        count.query();
+        if (count.next()) {
+            return count.getAggregate("COUNT");
+        }
+    },
 
     type: 'QuizHelper'
 });]]></script>
@@ -96,13 +152,13 @@ QuizHelper.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-09-09 15:13:54</sys_created_on>
         <sys_id>721a80cfc377e21034d93d0ed4013142</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>43</sys_mod_count>
         <sys_name>QuizHelper</sys_name>
         <sys_package display_value="Quiz App" source="x_1397649_quiz_app">97e1caa2c3f7621034d93d0ed401319f</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Quiz App">97e1caa2c3f7621034d93d0ed401319f</sys_scope>
         <sys_update_name>sys_script_include_721a80cfc377e21034d93d0ed4013142</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-02-26 18:15:16</sys_updated_on>
+        <sys_updated_on>2026-03-05 07:31:03</sys_updated_on>
     </sys_script_include>
 </record_update>
